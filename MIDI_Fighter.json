@@ -1,6 +1,6 @@
 {
   "createdWith": "Open Stage Control",
-  "version": "1.14.5",
+  "version": "1.15.5",
   "type": "session",
   "content": {
     "type": "root",
@@ -125,7 +125,8 @@
             "values": {
               "Drums": 1,
               "Guitar": 2
-            }
+            },
+            "lock": false
           },
           {
             "type": "button",
@@ -168,7 +169,8 @@
             "on": 1,
             "off": 0,
             "mode": "tap",
-            "doubleTap": false
+            "doubleTap": false,
+            "lock": false
           },
           {
             "type": "button",
@@ -211,7 +213,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -254,7 +257,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -297,7 +301,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -340,7 +345,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -383,7 +389,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -426,7 +433,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -469,7 +477,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -512,7 +521,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -555,7 +565,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -598,7 +609,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -641,7 +653,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -684,7 +697,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -727,7 +741,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -770,7 +785,8 @@
             "on": 1,
             "off": 0,
             "mode": "tap",
-            "doubleTap": false
+            "doubleTap": false,
+            "lock": false
           },
           {
             "type": "text",
@@ -804,10 +820,12 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           }
         ],
-        "tabs": []
+        "tabs": [],
+        "lock": false
       },
       {
         "type": "panel",
@@ -884,8 +902,8 @@
             "spring": false,
             "doubleTap": false,
             "range": {
-              "min": 0,
-              "max": 1
+              "min": 0.001,
+              "max": 2
             },
             "logScale": false,
             "sensitivity": 1,
@@ -903,7 +921,8 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
-            "onTouch": ""
+            "onTouch": "",
+            "lock": false
           },
           {
             "type": "knob",
@@ -954,7 +973,8 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
-            "onTouch": ""
+            "onTouch": "",
+            "lock": false
           },
           {
             "type": "knob",
@@ -1005,7 +1025,8 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
-            "onTouch": ""
+            "onTouch": "",
+            "lock": false
           },
           {
             "type": "knob",
@@ -1056,7 +1077,8 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
-            "onTouch": ""
+            "onTouch": "",
+            "lock": false
           },
           {
             "type": "knob",
@@ -1107,7 +1129,8 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
-            "onTouch": ""
+            "onTouch": "",
+            "lock": false
           },
           {
             "type": "text",
@@ -1141,7 +1164,8 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "text",
@@ -1175,7 +1199,8 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "text",
@@ -1209,7 +1234,8 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "text",
@@ -1243,7 +1269,8 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "text",
@@ -1277,7 +1304,8 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "keyboard",
@@ -1321,12 +1349,15 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           }
         ],
-        "tabs": []
+        "tabs": [],
+        "lock": false
       }
     ],
-    "tabs": []
+    "tabs": [],
+    "lock": false
   }
 }

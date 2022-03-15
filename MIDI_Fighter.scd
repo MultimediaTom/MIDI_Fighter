@@ -26,7 +26,18 @@ SynthDef(\MIDIbass, {
 	Out.ar(out, sig);
 }).add;
 
-p = Pbind(*[
+SynthDef.new(\MIDIpiano, {
+	arg out = 0, note = 50, amp = 1, cutoff = 350, dec = 1, atk = 0.1, sus = 0.75, rel = 0.5, gate = 0;
+	var env, sig;
+	env = EnvGen.kr(Env.adsr(atk, dec, sus, rel), gate);
+	sig = SinOsc.ar(note.midicps, amp)*env;
+	sig = CombC.ar(sig, 1, 0.125, dec);
+	Out.ar(out, sig);
+}).add;
+
+p = Synth(\MIDIpiano);
+
+s = Pbind(*[
 	\instrument: \MIDIbass,
 	\note: Pseq([
 		    Pseq([35,47,35,45,47],6),
@@ -39,18 +50,9 @@ p = Pbind(*[
 	\decay: Pseq([2,1,0.75,0.75,0.75],inf),
 ]).play;
 
-p.stop;
+s.stop;
 
 //OSC Reciever Funcs
-
-
-OSCdef(\keyboard, {
-	arg msg;
-	if(msg[2] == 1.0){
-		Synth(\MIDIbass, [\note, msg[1]]);
-	};
-	//Synth(\bass, [\bufnum, ~clapBuffer.bufnum]);
-}, 'keyboard');
 
 OSCdef(\button1, {
 	Synth(\sampler, [\bufnum, ~clapBuffer.bufnum]);
@@ -74,6 +76,23 @@ OSCdef(\button4, {
 OSCdef(\button5, {
 	Synth(\sampler, [\bufnum, ~clapSnareBuffer.bufnum]);
 }, 'ClapSnare');
+
+OSCdef(\keyboard, {
+	arg msg;
+	if(msg[2] == 1.0){
+		p.set(\note, msg[1]);
+		p.set(\gate, 1);
+	}
+	{
+		p.set(\gate, 0);
+	}
+}, 'keyboard');
+
+OSCdef(\A, {
+	arg msg;
+	p.set(\atk, msg[1]);
+	//post('atk set to: ' + msg[1].postln);
+}, 'knob_1');
 
 
 //Enable OSC Trace without Connectivity Checks
