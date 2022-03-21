@@ -1,8 +1,19 @@
-// - 1# -
-
+// - #1 -
 // - Samples -
 
+b = NetAddr.new("127.0.0.1", 8080);
 ~mode = false;
+~vis = [
+  [ 0, 0 ],
+  [ 0.06, 1 ],
+  [ 0.35, 0.75 ],
+  [ 0.85, 0.75 ],
+  [ 1, 0 ]
+];
+~atk = 0.2;
+~dec = 0.2;
+~sus = 0.75;
+~rel = 0.3;
 
 ~clapBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/clap.wav");
 ~kickBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/kick.wav");
@@ -10,7 +21,7 @@
 ~hiHatBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/hi_hat.ogg");
 ~clapSnareBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/clap_snare.wav");
 
-
+// - #2 -
 // - Synths -
 
 SynthDef(\sampler, {
@@ -31,10 +42,10 @@ SynthDef(\MIDIbass, {
 }).add;
 
 SynthDef.new(\MIDIpiano, {
-	arg out = 0, note = 50, amp = 1, cutoff = 350, dec = 0.2, atk = 0.1, sus = 0.75, rel = 0.5, gate = 0;
+	arg out = 0, note = 50, amp = 1, cutoff = 350, dec = 0.2, atk = 0.2, sus = 0.75, rel = 0.3, gate = 0;
 	var env, sig;
 	env = EnvGen.kr(Env.adsr(atk, dec, sus, rel), gate);
-	sig = SinOsc.ar(note.midicps, amp)*env;
+	sig = SinOsc.ar(note.midicps,1)*env;
 	sig = CombC.ar(sig, 1, 0.125, dec);
 	Out.ar(out, sig);
 }).add;
@@ -76,7 +87,7 @@ OSCdef(\keyboard, {
 	} //else
 	{
 		if(msg[2] == 1.0) {
-			q.set(\note, msg[1]);
+			q.set(\note, msg[1] - 20);
 			q.set(\gate, 1);
 		} {
 			q.set(\gate, 0);
@@ -86,32 +97,46 @@ OSCdef(\keyboard, {
 
 OSCdef(\A, {
 	arg msg;
-	p.set(\atk, msg[1]);
+	~atk = msg[1];
+	p.set(\atk, ~atk);
+	~vis[1][0] = ~atk * 0.3;
+	b.sendMsg("/ADSRvis", ("" + ~vis));
 	//post('atk set to: ' + msg[1].postln);
 }, 'knob_1');
 
 OSCdef(\D, {
 	arg msg;
 	p.set(\dec, msg[1]);
+	~dec = msg[1];
+	~vis[2][0] = 0.3 + (~dec * 0.2);
+	b.sendMsg("/ADSRvis", ("" + ~vis));
 	//post('dec set to: ' + msg[1].postln);
 }, 'knob_2');
 
 OSCdef(\S, {
 	arg msg;
 	p.set(\sus, msg[1]);
+	~sus = msg[1];
+	~vis[2][1] = ~sus;
+	~vis[3][1] = ~sus;
+	b.sendMsg("/ADSRvis", ("" + ~vis));
 	//post('sus set to: ' + msg[1].postln);
 }, 'knob_3');
 
 OSCdef(\R, {
 	arg msg;
 	p.set(\rel, msg[1]);
+	~rel = msg[1];
+	~vis[3][0] = 0.8 + (~rel * 0.2);
+	b.sendMsg("/ADSRvis", ("" + ~vis));
 	//post('rel set to: ' + msg[1].postln);
 }, 'knob_4');
 
 OSCdef(\Vol, {
 	arg msg;
 	p.set(\amp, msg[1]);
-	//post('Volume set to: ' + msg[1].postln);
+	post('Volume set to: ' + msg[1].postln);
+	p.get(\amp).postln;
 }, 'knob_5');
 
 OSCdef(\Mode, {
@@ -122,13 +147,11 @@ OSCdef(\Mode, {
 
 
 
-// - 2# -
+// - #3 -
 
 q = Synth(\MIDIbass);
 p = Synth(\MIDIpiano);
-
-
-
+b.sendMsg("/led_1", 1);
 
 
 //Sequencer
