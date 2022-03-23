@@ -1,6 +1,6 @@
 {
   "createdWith": "Open Stage Control",
-  "version": "1.14.5",
+  "version": "1.15.5",
   "type": "session",
   "content": {
     "type": "root",
@@ -44,7 +44,7 @@
         "type": "panel",
         "top": 30,
         "left": 40,
-        "id": "midi_panel",
+        "id": "sampler_panel",
         "visible": true,
         "interaction": true,
         "comments": "",
@@ -126,7 +126,8 @@
             "on": 1,
             "off": 0,
             "mode": "tap",
-            "doubleTap": false
+            "doubleTap": false,
+            "lock": false
           },
           {
             "type": "button",
@@ -169,7 +170,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -212,7 +214,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -255,7 +258,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -298,7 +302,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -341,7 +346,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -384,7 +390,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -427,7 +434,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -470,7 +478,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -513,7 +522,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -556,7 +566,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -599,7 +610,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -642,7 +654,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -685,7 +698,8 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false
           },
           {
             "type": "button",
@@ -728,21 +742,23 @@
             "on": 1,
             "off": 0,
             "mode": "tap",
-            "doubleTap": false
+            "doubleTap": false,
+            "lock": false
           }
         ],
-        "tabs": []
+        "tabs": [],
+        "lock": false
       },
       {
         "type": "panel",
-        "top": 340,
+        "top": 300,
         "left": 40,
-        "id": "midi_panel",
+        "id": "synth_panel",
         "visible": true,
         "interaction": true,
         "comments": "",
         "width": 570,
-        "height": 390,
+        "height": 560,
         "expand": "false",
         "colorText": "auto",
         "colorWidget": "auto",
@@ -780,7 +796,7 @@
         "widgets": [
           {
             "type": "knob",
-            "top": 10,
+            "top": 170,
             "left": 20,
             "id": "knob_1",
             "visible": true,
@@ -800,21 +816,7 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "design": "default",
-            "pips": false,
-            "dashed": false,
-            "angle": 270,
             "mode": "vertical",
-            "spring": false,
-            "doubleTap": false,
-            "range": {
-              "min": 0.001,
-              "max": 1
-            },
-            "logScale": false,
-            "sensitivity": 1,
-            "steps": "",
-            "origin": "auto",
             "value": "",
             "default": 0.2,
             "linkId": "",
@@ -827,11 +829,26 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
+            "lock": false,
+            "doubleTap": false,
+            "design": "default",
+            "pips": false,
+            "dashed": false,
+            "angle": 270,
+            "spring": false,
+            "range": {
+              "min": 0.001,
+              "max": 1
+            },
+            "logScale": false,
+            "sensitivity": 1,
+            "steps": "",
+            "origin": "auto",
             "onTouch": ""
           },
           {
             "type": "knob",
-            "top": 10,
+            "top": 170,
             "left": 130,
             "id": "knob_2",
             "visible": true,
@@ -851,21 +868,7 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "design": "default",
-            "pips": false,
-            "dashed": false,
-            "angle": 270,
             "mode": "vertical",
-            "spring": false,
-            "doubleTap": false,
-            "range": {
-              "min": 0.001,
-              "max": 0.4
-            },
-            "logScale": false,
-            "sensitivity": 1,
-            "steps": "",
-            "origin": "auto",
             "value": "",
             "default": 0.2,
             "linkId": "",
@@ -878,11 +881,26 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
+            "lock": false,
+            "doubleTap": false,
+            "design": "default",
+            "pips": false,
+            "dashed": false,
+            "angle": 270,
+            "spring": false,
+            "range": {
+              "min": 0.001,
+              "max": 0.4
+            },
+            "logScale": false,
+            "sensitivity": 1,
+            "steps": "",
+            "origin": "auto",
             "onTouch": ""
           },
           {
             "type": "knob",
-            "top": 10,
+            "top": 170,
             "left": 240,
             "id": "knob_3",
             "visible": true,
@@ -902,21 +920,8 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "design": "default",
-            "pips": false,
-            "dashed": false,
-            "angle": 270,
             "mode": "vertical",
-            "spring": false,
             "doubleTap": false,
-            "range": {
-              "min": 0,
-              "max": 1
-            },
-            "logScale": false,
-            "sensitivity": 1,
-            "steps": "",
-            "origin": "auto",
             "value": "",
             "default": 0.7,
             "linkId": "",
@@ -929,11 +934,25 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
+            "lock": false,
+            "design": "default",
+            "pips": false,
+            "dashed": false,
+            "angle": 270,
+            "spring": false,
+            "range": {
+              "min": 0,
+              "max": 1
+            },
+            "logScale": false,
+            "sensitivity": 1,
+            "steps": "",
+            "origin": "auto",
             "onTouch": ""
           },
           {
             "type": "knob",
-            "top": 10,
+            "top": 170,
             "left": 350,
             "id": "knob_4",
             "visible": true,
@@ -953,21 +972,8 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "design": "default",
-            "pips": false,
-            "dashed": false,
-            "angle": 270,
             "mode": "vertical",
-            "spring": false,
             "doubleTap": false,
-            "range": {
-              "min": 0,
-              "max": 1
-            },
-            "logScale": false,
-            "sensitivity": 1,
-            "steps": "",
-            "origin": "auto",
             "value": "",
             "default": 0.3,
             "linkId": "",
@@ -980,11 +986,25 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
+            "lock": false,
+            "design": "default",
+            "pips": false,
+            "dashed": false,
+            "angle": 270,
+            "spring": false,
+            "range": {
+              "min": 0,
+              "max": 1
+            },
+            "logScale": false,
+            "sensitivity": 1,
+            "steps": "",
+            "origin": "auto",
             "onTouch": ""
           },
           {
             "type": "knob",
-            "top": 10,
+            "top": 170,
             "left": 460,
             "id": "knob_5",
             "visible": true,
@@ -1004,21 +1024,8 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "design": "default",
-            "pips": false,
-            "dashed": false,
-            "angle": 270,
             "mode": "vertical",
-            "spring": false,
             "doubleTap": false,
-            "range": {
-              "min": 0,
-              "max": 2
-            },
-            "logScale": false,
-            "sensitivity": 1,
-            "steps": "",
-            "origin": "auto",
             "value": "",
             "default": 1,
             "linkId": "",
@@ -1031,11 +1038,25 @@
             "bypass": false,
             "onCreate": "",
             "onValue": "",
+            "lock": false,
+            "design": "default",
+            "pips": false,
+            "dashed": false,
+            "angle": 270,
+            "spring": false,
+            "range": {
+              "min": 0,
+              "max": 2
+            },
+            "logScale": false,
+            "sensitivity": 1,
+            "steps": "",
+            "origin": "auto",
             "onTouch": ""
           },
           {
             "type": "text",
-            "top": 100,
+            "top": 260,
             "left": 20,
             "id": "text_2",
             "visible": true,
@@ -1056,7 +1077,6 @@
             "css": "",
             "vertical": false,
             "wrap": false,
-            "align": "center",
             "value": "A",
             "default": "",
             "linkId": "",
@@ -1065,11 +1085,13 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "align": "center"
           },
           {
             "type": "text",
-            "top": 100,
+            "top": 260,
             "left": 130,
             "id": "text_3",
             "visible": true,
@@ -1090,7 +1112,6 @@
             "css": "",
             "vertical": false,
             "wrap": false,
-            "align": "center",
             "value": "D",
             "default": "",
             "linkId": "",
@@ -1099,11 +1120,13 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "align": "center"
           },
           {
             "type": "text",
-            "top": 100,
+            "top": 260,
             "left": 240,
             "id": "text_4",
             "visible": true,
@@ -1124,7 +1147,6 @@
             "css": "",
             "vertical": false,
             "wrap": false,
-            "align": "center",
             "value": "S",
             "default": "",
             "linkId": "",
@@ -1133,11 +1155,13 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "align": "center"
           },
           {
             "type": "text",
-            "top": 100,
+            "top": 260,
             "left": 350,
             "id": "text_5",
             "visible": true,
@@ -1158,7 +1182,6 @@
             "css": "",
             "vertical": false,
             "wrap": false,
-            "align": "center",
             "value": "R",
             "default": "",
             "linkId": "",
@@ -1167,11 +1190,13 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "align": "center"
           },
           {
             "type": "text",
-            "top": 100,
+            "top": 260,
             "left": 460,
             "id": "text_6",
             "visible": true,
@@ -1192,7 +1217,6 @@
             "css": "",
             "vertical": false,
             "wrap": false,
-            "align": "center",
             "value": "VOL",
             "default": 0.5,
             "linkId": "",
@@ -1201,11 +1225,13 @@
             "decimals": 2,
             "target": "",
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "align": "center"
           },
           {
             "type": "keyboard",
-            "top": 250,
+            "top": 410,
             "left": 20,
             "id": "keyboard",
             "visible": true,
@@ -1225,14 +1251,8 @@
             "padding": "auto",
             "html": "",
             "css": "",
-            "colorWhite": "auto",
-            "colorBlack": "auto",
-            "keys": 25,
-            "start": 48,
-            "traversing": true,
             "on": 1,
             "off": 0,
-            "velocity": false,
             "mode": "push",
             "value": "",
             "default": "",
@@ -1245,11 +1265,18 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "colorWhite": "auto",
+            "colorBlack": "auto",
+            "keys": 25,
+            "start": 48,
+            "traversing": true,
+            "velocity": false
           },
           {
             "type": "switch",
-            "top": 160,
+            "top": 320,
             "left": 20,
             "id": "switch_1",
             "visible": true,
@@ -1270,13 +1297,7 @@
             "html": "",
             "css": "",
             "colorTextOn": "#000000",
-            "layout": "horizontal",
-            "gridTemplate": "",
             "wrap": false,
-            "values": {
-              "Piano": 1,
-              "Bass": 2
-            },
             "mode": "tap",
             "value": "",
             "default": 1,
@@ -1289,169 +1310,239 @@
             "ignoreDefaults": false,
             "bypass": false,
             "onCreate": "",
-            "onValue": ""
+            "onValue": "",
+            "lock": false,
+            "layout": "horizontal",
+            "gridTemplate": "",
+            "values": {
+              "Piano": 1,
+              "Bass": 2
+            }
+          },
+          {
+            "type": "plot",
+            "top": 20,
+            "left": 20,
+            "id": "ADSRvis",
+            "visible": true,
+            "comments": "",
+            "width": 280,
+            "height": 140,
+            "expand": "false",
+            "colorText": "auto",
+            "colorWidget": "auto",
+            "colorStroke": "auto",
+            "colorFill": "auto",
+            "alphaStroke": "auto",
+            "alphaFillOff": "auto",
+            "alphaFillOn": "auto",
+            "lineWidth": "auto",
+            "padding": "auto",
+            "html": "",
+            "css": "",
+            "value": "",
+            "default": [
+              [
+                0,
+                0
+              ],
+              [
+                0.1,
+                1
+              ],
+              [
+                0.3,
+                0.75
+              ],
+              [
+                0.85,
+                0.75
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "linkId": "",
+            "address": "auto",
+            "preArgs": "",
+            "target": "",
+            "onCreate": "",
+            "onValue": "",
+            "lock": false,
+            "pips": true,
+            "origin": "auto",
+            "dots": false,
+            "bars": false,
+            "rangeX": {
+              "min": 0,
+              "max": 1
+            },
+            "rangeY": {
+              "min": 0,
+              "max": 1
+            }
+          },
+          {
+            "type": "led",
+            "top": 50,
+            "left": 360,
+            "id": "power_led",
+            "visible": true,
+            "comments": "",
+            "width": 40,
+            "height": "auto",
+            "expand": "false",
+            "colorText": "auto",
+            "colorWidget": "auto",
+            "colorStroke": "auto",
+            "colorFill": "#17c15b",
+            "alphaStroke": "auto",
+            "alphaFillOff": "auto",
+            "alphaFillOn": "auto",
+            "lineWidth": "auto",
+            "padding": "auto",
+            "html": "",
+            "css": "",
+            "value": "",
+            "default": 0,
+            "linkId": "",
+            "address": "auto",
+            "preArgs": "",
+            "target": "",
+            "onCreate": "",
+            "onValue": "",
+            "lock": false,
+            "mode": "intensity",
+            "borderRadius": "",
+            "range": {
+              "min": 0,
+              "max": 1
+            },
+            "alphaRange": {
+              "min": 0,
+              "max": 1
+            },
+            "logScale": false
+          },
+          {
+            "type": "text",
+            "top": 90,
+            "left": 350,
+            "id": "text_7",
+            "visible": true,
+            "comments": "",
+            "width": 60,
+            "height": 30,
+            "expand": "false",
+            "colorText": "auto",
+            "colorWidget": "auto",
+            "colorStroke": "auto",
+            "colorFill": "auto",
+            "alphaStroke": "auto",
+            "alphaFillOff": "auto",
+            "alphaFillOn": "auto",
+            "lineWidth": "auto",
+            "padding": "auto",
+            "html": "",
+            "css": "",
+            "value": "POWER",
+            "default": "",
+            "linkId": "",
+            "address": "auto",
+            "preArgs": "",
+            "target": "",
+            "onCreate": "",
+            "onValue": "",
+            "lock": false,
+            "vertical": false,
+            "wrap": false,
+            "align": "center",
+            "decimals": 2
+          },
+          {
+            "type": "text",
+            "top": 90,
+            "left": 450,
+            "id": "text_8",
+            "visible": true,
+            "comments": "",
+            "width": 60,
+            "height": 30,
+            "expand": "false",
+            "colorText": "auto",
+            "colorWidget": "auto",
+            "colorStroke": "auto",
+            "colorFill": "auto",
+            "alphaStroke": "auto",
+            "alphaFillOff": "auto",
+            "alphaFillOn": "auto",
+            "lineWidth": "auto",
+            "padding": "auto",
+            "html": "",
+            "css": "",
+            "vertical": false,
+            "wrap": false,
+            "align": "center",
+            "value": "GATE",
+            "default": "",
+            "linkId": "",
+            "address": "auto",
+            "preArgs": "",
+            "decimals": 2,
+            "target": "",
+            "onCreate": "",
+            "onValue": "",
+            "lock": false
+          },
+          {
+            "type": "led",
+            "top": 50,
+            "left": 460,
+            "id": "gate_led",
+            "visible": true,
+            "comments": "",
+            "width": 40,
+            "height": "auto",
+            "expand": "false",
+            "colorText": "auto",
+            "colorWidget": "auto",
+            "colorStroke": "auto",
+            "colorFill": "#1796c1",
+            "alphaStroke": "auto",
+            "alphaFillOff": "auto",
+            "alphaFillOn": "auto",
+            "lineWidth": "auto",
+            "padding": "auto",
+            "html": "",
+            "css": "",
+            "value": "",
+            "default": 0,
+            "linkId": "",
+            "address": "auto",
+            "preArgs": "",
+            "target": "",
+            "onCreate": "",
+            "onValue": "",
+            "lock": false,
+            "borderRadius": "",
+            "mode": "intensity",
+            "range": {
+              "min": 0,
+              "max": 1
+            },
+            "alphaRange": {
+              "min": 0,
+              "max": 1
+            },
+            "logScale": false
           }
         ],
-        "tabs": []
-      },
-      {
-        "type": "fader",
-        "top": 620,
-        "left": 680,
-        "id": "freq",
-        "visible": true,
-        "interaction": true,
-        "comments": "",
-        "width": "auto",
-        "height": "auto",
-        "expand": "false",
-        "colorText": "auto",
-        "colorWidget": "auto",
-        "colorStroke": "auto",
-        "colorFill": "auto",
-        "alphaStroke": "auto",
-        "alphaFillOff": "auto",
-        "alphaFillOn": "auto",
-        "lineWidth": "auto",
-        "padding": "auto",
-        "html": "",
-        "css": "",
-        "design": "default",
-        "knobSize": "auto",
-        "horizontal": false,
-        "pips": false,
-        "dashed": false,
-        "gradient": [],
-        "snap": false,
-        "spring": false,
-        "doubleTap": false,
-        "range": {
-          "min": 0,
-          "max": 1
-        },
-        "logScale": false,
-        "sensitivity": 1,
-        "steps": "",
-        "origin": "auto",
-        "value": "",
-        "default": "",
-        "linkId": "",
-        "address": "auto",
-        "preArgs": "",
-        "typeTags": "",
-        "decimals": 2,
-        "target": "",
-        "ignoreDefaults": false,
-        "bypass": false,
-        "onCreate": "",
-        "onValue": "",
-        "onTouch": ""
-      },
-      {
-        "type": "plot",
-        "top": 350,
-        "left": 630,
-        "id": "ADSRvis",
-        "visible": true,
-        "comments": "",
-        "width": "auto",
-        "height": "auto",
-        "expand": "false",
-        "colorText": "auto",
-        "colorWidget": "auto",
-        "colorStroke": "auto",
-        "colorFill": "auto",
-        "alphaStroke": "auto",
-        "alphaFillOff": "auto",
-        "alphaFillOn": "auto",
-        "lineWidth": "auto",
-        "padding": "auto",
-        "html": "",
-        "css": "",
-        "dots": false,
-        "bars": false,
-        "pips": true,
-        "rangeX": {
-          "min": 0,
-          "max": 1
-        },
-        "rangeY": {
-          "min": 0,
-          "max": 1
-        },
-        "origin": "auto",
-        "value": "",
-        "default": [
-          [
-            0,
-            0
-          ],
-          [
-            0.1,
-            1
-          ],
-          [
-            0.3,
-            0.75
-          ],
-          [
-            0.85,
-            0.75
-          ],
-          [
-            1,
-            0
-          ]
-        ],
-        "linkId": "",
-        "address": "auto",
-        "preArgs": "",
-        "target": "",
-        "onCreate": "",
-        "onValue": ""
-      },
-      {
-        "type": "led",
-        "top": 290,
-        "left": 40,
-        "id": "led_1",
-        "visible": true,
-        "comments": "",
-        "width": "auto",
-        "height": "auto",
-        "expand": "false",
-        "colorText": "auto",
-        "colorWidget": "auto",
-        "colorStroke": "auto",
-        "colorFill": "#17c15b",
-        "alphaStroke": "auto",
-        "alphaFillOff": "auto",
-        "alphaFillOn": "auto",
-        "lineWidth": "auto",
-        "padding": "auto",
-        "html": "",
-        "css": "",
-        "borderRadius": "",
-        "mode": "intensity",
-        "range": {
-          "min": 0,
-          "max": 1
-        },
-        "alphaRange": {
-          "min": 0,
-          "max": 1
-        },
-        "logScale": false,
-        "value": "",
-        "default": 0,
-        "linkId": "",
-        "address": "auto",
-        "preArgs": "",
-        "target": "",
-        "onCreate": "",
-        "onValue": ""
+        "tabs": [],
+        "lock": false
       }
     ],
-    "tabs": []
+    "tabs": [],
+    "lock": false
   }
 }

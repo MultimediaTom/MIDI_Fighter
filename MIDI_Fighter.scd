@@ -1,5 +1,5 @@
 // - #1 -
-// - Samples -
+// - Variables -
 
 b = NetAddr.new("127.0.0.1", 8080);
 ~mode = false;
@@ -15,11 +15,15 @@ b = NetAddr.new("127.0.0.1", 8080);
 ~sus = 0.75;
 ~rel = 0.3;
 
+// - Samples -
+
 ~clapBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/clap.wav");
 ~kickBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/kick.wav");
 ~bassDrumBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/bass_drum.wav");
 ~hiHatBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/hi_hat.ogg");
 ~clapSnareBuffer = Buffer.read(s, "C:/Users/sheil/Desktop/MIDI_Fighter/samples/clap_snare.wav");
+
+
 
 // - #2 -
 // - Synths -
@@ -30,7 +34,6 @@ SynthDef(\sampler, {
 		PlayBuf.ar(2, bufnum, BufRateScale.kr(bufnum), \t_tr.kr(1,0)) * amp;
 	)
 }).add;
-
 
 SynthDef(\MIDIbass, {
 	arg out = 0, note = 35, amp = 1, cutoff = 350, decay = 1, gate = 0;
@@ -81,16 +84,20 @@ OSCdef(\keyboard, {
 		if(msg[2] == 1.0) {
 			p.set(\note, msg[1]);
 			p.set(\gate, 1);
+			b.sendMsg("/gate_led", 1);
 		} {
 			p.set(\gate, 0);
+			b.sendMsg("/gate_led", 0);
 		}
 	} //else
 	{
 		if(msg[2] == 1.0) {
 			q.set(\note, msg[1] - 20);
 			q.set(\gate, 1);
+			b.sendMsg("/gate_led", 1);
 		} {
 			q.set(\gate, 0);
+			b.sendMsg("/gate_led", 0);
 		}
 	}
 }, 'keyboard');
@@ -151,7 +158,13 @@ OSCdef(\Mode, {
 
 q = Synth(\MIDIbass);
 p = Synth(\MIDIpiano);
-b.sendMsg("/led_1", 1);
+b.sendMsg("/power_led", 1);
+
+
+
+
+
+
 
 
 //Sequencer
