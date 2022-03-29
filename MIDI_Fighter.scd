@@ -26,16 +26,22 @@ b = NetAddr.new("127.0.0.1", 8080);
 	100,
 ];
 
+~metros = [nil, nil, nil, nil];
+
 // - Samples -
-
-~clapBuffer = Buffer.read(s, "samples/clap.wav");
-~kickBuffer = Buffer.read(s, "samples/kick.wav");
-~bassDrumBuffer = Buffer.read(s, "samples/bass_drum.wav");
-~hiHatBuffer = Buffer.read(s, "samples/hi_hat.ogg");
-~clapSnareBuffer = Buffer.read(s, "samples/clap_snare.wav");
-~metroUpBuffer = Buffer.read(s, "samples/metro_up.wav");
-
-
+~bufs = [
+	Buffer.read(s, "samples/clap.wav"),
+	Buffer.read(s, "samples/kick.wav"),
+	Buffer.read(s, "samples/bass_drum.wav"),
+	Buffer.read(s, "samples/hi_hat.ogg"),
+	Buffer.read(s, "samples/clap_snare.wav"),
+	Buffer.read(s, "samples/snap.wav"),
+	Buffer.read(s, "samples/chirp.wav"),
+	Buffer.read(s, "samples/gong.wav"),
+	Buffer.read(s, "samples/click.wav"),
+	Buffer.read(s, "samples/space_snare.wav"),
+	Buffer.read(s, "samples/metro_up.wav"),
+];
 
 // - #2 -
 // - Synths -
@@ -45,15 +51,6 @@ SynthDef(\sampler, {
 	Out.ar(out,
 		PlayBuf.ar(2, bufnum, BufRateScale.kr(bufnum), \t_tr.kr(1,0)) * amp;
 	)
-}).add;
-
-SynthDef(\METROtick, {
-	arg out = 0, note = 35, amp = 1, cutoff = 350, decay = 1;
-	var env, sig;
-	env = EnvGen.kr(Env.new([0,1,0],[0.001,2],[3,-50]));
-	sig = RLPF.ar(LFSaw.ar(note.midicps, amp), cutoff)*env;
-	sig = CombC.ar(sig, 1, 0.125, decay);
-	Out.ar(out, sig);
 }).add;
 
 SynthDef(\METRObass, {
@@ -85,28 +82,16 @@ SynthDef.new(\MIDIpiano, {
 
 //OSC Reciever Funcs
 
-OSCdef(\button1, {
-	Synth(\sampler, [\bufnum, ~clapBuffer.bufnum]);
-}, 'Clap');
-
-OSCdef(\button2, {
-	Synth(\sampler, [\bufnum, ~kickBuffer.bufnum]);
-}, 'Kick');
-
-
-OSCdef(\button3, {
-	Synth(\sampler, [\bufnum, ~bassDrumBuffer.bufnum]);
-}, 'Bass');
-
-
-OSCdef(\button4, {
-	Synth(\sampler, [\bufnum, ~hiHatBuffer.bufnum]);
-}, 'HiHat');
-
-
-OSCdef(\button5, {
-	Synth(\sampler, [\bufnum, ~clapSnareBuffer.bufnum]);
-}, 'ClapSnare');
+OSCdef(\button1, {Synth(\sampler, [\bufnum, ~bufs[0].bufnum])}, 'Clap');
+OSCdef(\button2, {Synth(\sampler, [\bufnum, ~bufs[1].bufnum])}, 'Kick');
+OSCdef(\button3, {Synth(\sampler, [\bufnum, ~bufs[2].bufnum])}, 'Bass');
+OSCdef(\button4, {Synth(\sampler, [\bufnum, ~bufs[3].bufnum])}, 'HiHat');
+OSCdef(\button5, {Synth(\sampler, [\bufnum, ~bufs[4].bufnum])}, 'Clap Snare');
+OSCdef(\button6, {Synth(\sampler, [\bufnum, ~bufs[5].bufnum])}, 'Snap');
+OSCdef(\button7, {Synth(\sampler, [\bufnum, ~bufs[6].bufnum])}, 'Chirp');
+OSCdef(\button8, {Synth(\sampler, [\bufnum, ~bufs[7].bufnum])}, 'Gong');
+OSCdef(\button9, {Synth(\sampler, [\bufnum, ~bufs[8].bufnum])}, 'Click');
+OSCdef(\button10, {Synth(\sampler, [\bufnum, ~bufs[9].bufnum])}, 'Space Snare');
 
 OSCdef(\keyboard, {
 	arg msg;
@@ -187,64 +172,67 @@ OSCdef(\Mode, {
 }, 'switch_1');
 
 OSCdef(\bpm1, {arg msg; ~bpms[0] = msg[1]}, 'dropdown_1');
+OSCdef(\bpm2, {arg msg; ~bpms[1] = msg[1]}, 'dropdown_2');
+OSCdef(\bpm3, {arg msg; ~bpms[2] = msg[1]}, 'dropdown_3');
+OSCdef(\bpm4, {arg msg; ~bpms[3] = msg[1]}, 'dropdown_4');
 
 OSCdef(\metro1, {
 	arg msg;
 	if(msg[1] == 1.0) {
-		m = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~metroUpBuffer.bufnum]); 60/~bpms[0] })], inf).play;
+		~metros[0] = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~bufs[10].bufnum]); 60/~bpms[0]})], inf).play;
 		b.sendMsg("/metro_led_1", 1);
 	} {
-		m.stop;
+		~metros[0].stop;
 		b.sendMsg("/metro_led_1", 0);
-		m.free;
+		~metros[0].free;
 	}
-}, 'metro_2');
+}, 'metro_1');
 
 OSCdef(\metro2, {
 	arg msg;
 	if(msg[1] == 1.0) {
-		m = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~clapSnareBuffer.bufnum]); 60/~bpms[1] })], inf).play;
+		~metros[1] = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~bufs[0].bufnum]); 60/~bpms[1] })], inf).play;
 		b.sendMsg("/metro_led_2", 1);
 	} {
-		m.stop;
+		~metros[1].stop;
 		b.sendMsg("/metro_led_2", 0);
-		m.free;
+		~metros[1].free;
 	}
 }, 'metro_2');
 
 OSCdef(\metro3, {
 	arg msg;
 	if(msg[1] == 1.0) {
-		m = Pseq([Pfunc({ Synth(\METRObass); 60/~bpms[2] })], inf).play;
-		b.sendMsg("/metro_led_3", 1);
+		~metros[1] = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~bufs[3].bufnum]); 60/~bpms[1] })], inf).play;
+		b.sendMsg("/metro_led_2", 1);
 	} {
-		m.stop;
-		b.sendMsg("/metro_led_3", 0);
-		m.free;
+		~metros[1].stop;
+		b.sendMsg("/metro_led_2", 0);
+		~metros[1].free;
 	}
 }, 'metro_3');
 
 OSCdef(\metro4, {
 	arg msg;
 	if(msg[1] == 1.0) {
-		m = Pseq([Pfunc({ Synth(\METRObass); 60/~bpms[3] })], inf).play;
+		~metros[3] = Pseq([Pfunc({ Synth(\METRObass); 60/~bpms[3] })], inf).play;
 		b.sendMsg("/metro_led_4", 1);
 	} {
-		m.stop;
+		~metros[3].stop;
 		b.sendMsg("/metro_led_4", 0);
-		m.free;
+		~metros[3].free;
 	}
 }, 'metro_4');
 
 
 // - #3 -
 
-
-n = Synth(\sampler, [\bufnum, ~hiHatBuffer.bufnum]);
 o = Synth(\METRObass);
 p = Synth(\MIDIpiano);
 q = Synth(\MIDIbass);
 b.sendMsg("/power_led", 1);
+
+
 
 
 
@@ -285,3 +273,9 @@ o.free;
 //https://freesound.org/people/adammusic18/sounds/208871/
 //https://freesound.org/people/LudwigMueller/sounds/548519/
 //https://freesound.org/people/Druminfected/sounds/250551/
+//https://freesound.org/people/Horn/sounds/9744/
+//https://freesound.org/people/Snapper4298/sounds/177494/
+//https://freesound.org/people/FreqMan/sounds/24550/
+//https://freesound.org/people/GowlerMusic/sounds/266566/
+//https://freesound.org/people/altemark/sounds/207919/
+
