@@ -27,15 +27,13 @@ b = NetAddr.new("127.0.0.1", 8080);
 ];
 
 // - Samples -
-~buf[
 
-];
 ~clapBuffer = Buffer.read(s, "samples/clap.wav");
 ~kickBuffer = Buffer.read(s, "samples/kick.wav");
 ~bassDrumBuffer = Buffer.read(s, "samples/bass_drum.wav");
 ~hiHatBuffer = Buffer.read(s, "samples/hi_hat.ogg");
 ~clapSnareBuffer = Buffer.read(s, "samples/clap_snare.wav");
-~metroUpBuffer = Buffer.read(s, "samples/metro_up.wav")
+~metroUpBuffer = Buffer.read(s, "samples/metro_up.wav");
 
 
 
@@ -193,7 +191,7 @@ OSCdef(\bpm1, {arg msg; ~bpms[0] = msg[1]}, 'dropdown_1');
 OSCdef(\metro1, {
 	arg msg;
 	if(msg[1] == 1.0) {
-		m = Pseq([Pfunc({ Synth(\METRObass); 60/~bpms[0] })], inf).play;
+		m = Pseq([Pfunc({ Synth(\sampler, [\bufnum, ~metroUpBuffer.bufnum]); 60/~bpms[0] })], inf).play;
 		b.sendMsg("/metro_led_1", 1);
 	} {
 		m.stop;
