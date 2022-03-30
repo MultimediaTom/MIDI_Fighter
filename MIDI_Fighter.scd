@@ -2,7 +2,7 @@
 // - Variables -
 
 s.quit;
-s.options.memSize = 65536;  // e.g., could be different for you
+s.options.memSize = 65536;
 s.boot;
 
 b = NetAddr.new("127.0.0.1", 8080);
